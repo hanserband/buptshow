@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+</head>
+<body>
+    <h1>Welcome to the Video Player</h1>
+    <video id="myVideo" width="640" height="360" controls>
+        <source src="copy_56F43F20-90F0-415D-8403-788A40236B0F.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var video = document.getElementById("myVideo");
+            
+            // Function to request full screen mode
+            function openFullscreen() {
+                if (video.requestFullscreen) {
+                    video.requestFullscreen();
+                } else if (video.mozRequestFullScreen) { // Firefox
+                    video.mozRequestFullScreen();
+                } else if (video.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                    video.webkitRequestFullscreen();
+                } else if (video.msRequestFullscreen) { // IE/Edge
+                    video.msRequestFullscreen();
+                }
+            }
+
+            // Automatically enter full screen when the video is ready to play
+            video.addEventListener('canplay', function() {
+                openFullscreen();
+                video.play();  // Start playing the video
+            });
+        });
+    </script>
+</body>
+</html>
